@@ -1,4 +1,4 @@
-import { QuoteController } from "../../controllers/QuoteController";
+import { QuoteController } from "Controllers/QuoteController";
 
 import { routes as router } from "../routes";
 
