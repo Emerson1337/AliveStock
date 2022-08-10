@@ -112,6 +112,9 @@
       "Modules/*": [
         "./src/modules/*"
       ],
+      "Services/*": [
+        "./src/services/*"
+      ],
       "@src/*": [
         "./src/*"
       ]
