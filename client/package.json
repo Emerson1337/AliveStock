@@ -53,6 +53,8 @@
     ]
   },
   "jest": {
-    "coveragePathIgnorePatterns": ["./src/index.tsx"]
+    "coveragePathIgnorePatterns": [
+      "./src/index.tsx"
+    ]
   }
 }
