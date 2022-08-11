@@ -1,2 +1,1 @@
-export * from "./QuoteDataDTO";
-export * from "./StockQuotePayloadDTO";
+export * from "./GlobalQuotePayloadDTO";
