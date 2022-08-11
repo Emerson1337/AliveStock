@@ -1,15 +1,15 @@
 import { ListQuoteService } from "Modules/Quotes/services";
 import { Request, Response } from "express";
-import { QuoteDataDTO } from "Interfaces/quotes";
+import { QuoteDataDTO } from "Modules/Quotes/DTOs/QuoteDataDTO";
 
 export class QuoteController {
   public async listQuoteByCompany(request: Request, response: Response) {
-    var { companyName } = request.params;
+    var { stockName } = request.params;
 
     try {
       const quoteResponse: QuoteDataDTO =
         await new ListQuoteService().listByCompany({
-          companyName,
+          stockName,
         });
 
       return response.send(quoteResponse);

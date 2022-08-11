@@ -1,15 +1,14 @@
-import { GlobalQuotePayloadDTO, QuoteDataDTO } from "Interfaces/quotes";
+import { GlobalQuotePayloadDTO } from "Interfaces/quotes";
 import { stockApi } from "Services/api";
 import { urls as apiUrls } from "@src/lib/urls";
-import { ListCompanyDTO } from "../DTOs";
+import { CompanyDTO } from "Interfaces/general";
+import { QuoteDataDTO } from "../DTOs/QuoteDataDTO";
 
 export class ListQuoteService {
-  public async listByCompany({
-    companyName,
-  }: ListCompanyDTO): Promise<QuoteDataDTO> {
+  public async listByCompany({ stockName }: CompanyDTO): Promise<QuoteDataDTO> {
     const stockQuote = await stockApi.get(apiUrls.quotes.getQuoteStock(), {
       params: {
-        symbol: companyName,
+        symbol: stockName,
       },
     });
 
