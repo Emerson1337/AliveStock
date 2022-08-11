@@ -1,7 +1,7 @@
 import app from "@src/app";
 import request from "supertest";
 
-describe("Quote controller", () => {
+describe("Quote History controller", () => {
   it("Should be able to get stock quote history", async () => {
     const response = await request(app).get(
       `/stocks/IBM/history?from=2022-07-04&to=2022-07-07`
