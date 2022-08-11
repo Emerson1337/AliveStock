@@ -11,7 +11,7 @@ export class ListQuoteService {
         symbol: stockName,
       },
     });
-
+    console.log(stockQuote.data);
     return this.getCurrentStockQuoteValue(stockQuote.data);
   }
 
@@ -22,6 +22,6 @@ export class ListQuoteService {
         lastPrice: Number(globalQuote["Global Quote"]["05. price"]),
         pricedAt: globalQuote["Global Quote"]["07. latest trading day"],
       };
-    else throw new Error("quote by stock not found!");
+    else throw new Error("Quote by stock not found!");
   }
 }

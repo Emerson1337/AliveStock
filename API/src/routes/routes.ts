@@ -4,5 +4,6 @@ const routes = Router();
 
 import "./quotesRoutes";
 import "./QuotesHistoryRoutes";
+import "./QuotesComparisonRoutes";
 
 export { routes };
