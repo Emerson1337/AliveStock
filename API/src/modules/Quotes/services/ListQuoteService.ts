@@ -1,16 +1,11 @@
 import { GlobalQuotePayloadDTO } from "Interfaces/quotes";
-import { stockApi } from "Services/api";
-import { urls as apiUrls } from "@src/lib/urls";
 import { CompanyDTO } from "Interfaces/general";
 import { QuoteDataDTO } from "../DTOs/QuoteDataDTO";
+import { getQuoteStock } from "Services/routeCalls/routeCallsService";
 
 export class ListQuoteService {
   public async listByCompany({ stockName }: CompanyDTO): Promise<QuoteDataDTO> {
-    const stockQuote = await stockApi.get(apiUrls.quotes.getQuoteStock(), {
-      params: {
-        symbol: stockName,
-      },
-    });
+    const stockQuote = await getQuoteStock(stockName);
 
     return this.getCurrentStockQuoteValue(stockQuote.data);
   }

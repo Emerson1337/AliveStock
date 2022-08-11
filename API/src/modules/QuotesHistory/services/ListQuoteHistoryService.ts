@@ -1,7 +1,6 @@
-import { QuoteHistoryDTO } from "./../DTOs/QuoteHistoryDTO";
-import { stockApi } from "Services/api";
-import { urls as apiUrls } from "@src/lib/urls";
+import { QuoteHistoryDTO } from "Modules/QuotesHistory/DTOs/QuoteHistoryDTO";
 import { StockHistoryDTO } from "../DTOs";
+import { getStockHistory } from "Services/routeCalls/routeCallsService";
 
 export class ListQuoteHistoryService {
   public async listHistoryQuoteByCompany({
@@ -9,13 +8,7 @@ export class ListQuoteHistoryService {
     dateFrom,
     dateTo,
   }: StockHistoryDTO): Promise<QuoteHistoryDTO> {
-    const stockHistoryQuote = (
-      await stockApi.get(apiUrls.intraday.getStockHistory(), {
-        params: {
-          symbol: stockName,
-        },
-      })
-    ).data;
+    const stockHistoryQuote = await getStockHistory(stockName);
 
     if (!stockHistoryQuote["Time Series (Daily)"]) {
       throw new Error("Stock history quotes not found!");
