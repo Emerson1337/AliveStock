@@ -8,6 +8,15 @@ describe("Quote History controller", () => {
     );
     expect(typeof response.body.name).toBe("string");
     expect(typeof response.body.prices).toBe("object");
+
+    // Verifying attr from object
+    expect(typeof response.body.prices[0].opening).toBe("number");
+    expect(typeof response.body.prices[0].high).toBe("number");
+    expect(typeof response.body.prices[0].low).toBe("number");
+    expect(typeof response.body.prices[0].closing).toBe("number");
+    expect(typeof response.body.prices[0].pricedAt).toBe("string");
+    expect(typeof response.body.prices[0].volume).toBe("number");
+
     expect(response.statusCode).toBe(200);
   });
 
