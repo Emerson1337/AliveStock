@@ -11,7 +11,7 @@ export class ListQuoteService {
         symbol: stockName,
       },
     });
-    console.log(stockQuote.data);
+
     return this.getCurrentStockQuoteValue(stockQuote.data);
   }
 
