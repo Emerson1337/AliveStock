@@ -3,7 +3,7 @@ import request from "supertest";
 
 describe("Quote controller", () => {
   it("Should be able to get stock quote", async () => {
-    const response = await request(app).get(`/quotes/IBM`);
+    const response = await request(app).get(`/stock/IBM/quote`);
 
     expect(typeof response.body.name).toBe("string");
     expect(typeof response.body.lastPrice).toBe("number");
@@ -12,7 +12,7 @@ describe("Quote controller", () => {
   });
 
   it("Should not be able to get stock quote", async () => {
-    const response = await request(app).get(`/quotes/IBM2`);
+    const response = await request(app).get(`/stock/IBM2/quote`);
 
     expect(response.body.errors).toBe("quote by stock not found!");
     expect(response.statusCode).toBe(404);
