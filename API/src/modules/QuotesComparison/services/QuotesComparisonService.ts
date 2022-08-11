@@ -7,7 +7,6 @@ export class QuotesComparisonService {
     stocksToCompare,
   }: StocksCompareDTO): Promise<QuotesComparisonDTO> {
     if (!stocksToCompare.length) throw new Error("Invalid data!");
-    console.log(stockName);
 
     const mainStock = await new ListQuoteService().listByCompany({ stockName });
 
