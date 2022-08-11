@@ -11,6 +11,11 @@ export class ListQuoteService {
   }
 
   public getCurrentStockQuoteValue(globalQuote: GlobalQuotePayloadDTO) {
+    if (typeof globalQuote["Global Quote"] == "undefined")
+      throw new Error(
+        "Unavailable API service! Probably 5 requests per minute has expired."
+      );
+
     if (Object.keys(globalQuote["Global Quote"]).length)
       return {
         name: globalQuote["Global Quote"]["01. symbol"],
