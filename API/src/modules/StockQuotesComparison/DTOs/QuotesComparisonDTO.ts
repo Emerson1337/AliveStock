@@ -1,4 +1,4 @@
-import { QuoteDataDTO } from "Modules/Quotes/DTOs/QuoteDataDTO";
+import { QuoteDataDTO } from "Modules/StockQuotes/DTOs/QuoteDataDTO";
 
 export interface QuotesComparisonDTO {
   lastPrices: Array<QuoteDataDTO>;

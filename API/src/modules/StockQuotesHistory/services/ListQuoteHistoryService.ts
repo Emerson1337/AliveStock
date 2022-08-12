@@ -1,6 +1,7 @@
-import { QuoteHistoryDTO } from "Modules/QuotesHistory/DTOs/QuoteHistoryDTO";
-import { StockHistoryDTO } from "../DTOs";
+import { QuoteHistoryDTO } from "Modules/StockQuotesHistory/DTOs/QuoteHistoryDTO";
 import { getStockHistory } from "Services/routeCalls/routeCallsService";
+
+import { StockHistoryDTO } from "../DTOs";
 
 export class ListQuoteHistoryService {
   public async listHistoryQuoteByCompany({

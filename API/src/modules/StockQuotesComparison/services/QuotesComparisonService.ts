@@ -1,5 +1,6 @@
+import { ListQuoteService } from "Modules/StockQuotes/services";
+
 import { QuotesComparisonDTO, StocksCompareDTO } from "../DTOs";
-import { ListQuoteService } from "Modules/Quotes/services";
 
 export class QuotesComparisonService {
   public async compareStockQuotes({

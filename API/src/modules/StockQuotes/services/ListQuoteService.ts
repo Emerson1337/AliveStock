@@ -1,4 +1,4 @@
-import { GlobalQuotePayloadDTO } from "Interfaces/quotes";
+import { GlobalQuotePayloadDTO } from "Interfaces/StockQuotes";
 import { CompanyDTO } from "Interfaces/general";
 import { QuoteDataDTO } from "../DTOs/QuoteDataDTO";
 import { getQuoteStock } from "Services/routeCalls/routeCallsService";
