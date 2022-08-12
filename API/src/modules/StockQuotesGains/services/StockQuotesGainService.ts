@@ -1,6 +1,5 @@
 import { ListQuoteService } from "Modules/StockQuotes/services";
 import { getStockHistory } from "Services/routeCalls/routeCallsService";
-import { formatDate } from "Helpers/dateFormatter";
 import {
   StockGainDTO,
   StockGainObjectDTO,
@@ -17,6 +16,11 @@ export class StockQuotesGainService {
       "Time Series (Daily)"
     ];
 
+    if (!stockQuoteHistory)
+      throw new Error(
+        "Unavailable API service! Probably 5 requests per minute has expired."
+      );
+
     const stockQuoteToday = await new ListQuoteService().listByCompany({
       stockName,
     });
@@ -24,11 +28,14 @@ export class StockQuotesGainService {
     const stockQuotePast = stockQuoteHistory[purchaseDate];
     const priceAtDate = stockQuotePast["4. close"];
 
-    const changePercent =
-      (priceAtDate - stockQuoteToday.lastPrice) / priceAtDate;
+    if (purchasedValue > stockQuotePast["5. volume"])
+      throw new Error(
+        "Purchase Stock amount greater then Stock sold in the day."
+      );
 
     // Patterns of variable names
-    const capitalGains = -(purchasedValue * changePercent); // if change is negative, then the new price grown up
+    const capitalGains =
+      stockQuoteToday.lastPrice * purchasedValue - priceAtDate * purchasedValue;
     const lastPrice = stockQuoteToday.lastPrice;
     const name = stockQuoteToday.name;
     const purchasedAmount = purchasedValue;
