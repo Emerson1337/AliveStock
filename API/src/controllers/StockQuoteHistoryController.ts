@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { ListQuoteHistoryService } from "Modules/QuotesHistory/services";
+
+import { ListQuoteHistoryService } from "Modules/StockQuotesHistory/services";
 
 export class QuoteHistoryController {
   public async quoteHistoryByCompany(request: Request, response: Response) {

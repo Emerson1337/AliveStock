@@ -1,6 +1,7 @@
-import { ListQuoteService } from "Modules/Quotes/services";
 import { Request, Response } from "express";
-import { QuoteDataDTO } from "Modules/Quotes/DTOs/QuoteDataDTO";
+
+import { QuoteDataDTO } from "Modules/StockQuotes/DTOs/QuoteDataDTO";
+import { ListQuoteService } from "Modules/StockQuotes/services";
 
 export class QuoteController {
   public async listQuoteByCompany(request: Request, response: Response) {

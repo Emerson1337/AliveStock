@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { StockQuotesGainService } from "Modules/QuotesGains/services";
+
+import { StockQuotesGainService } from "Modules/StockQuotesGains/services";
 
 export class StockQuotesGainController {
   public async stockQuoteGains(request: Request, response: Response) {

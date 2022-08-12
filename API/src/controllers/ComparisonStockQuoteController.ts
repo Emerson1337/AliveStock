@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { QuotesComparisonService } from "Modules/QuotesComparison/services";
+
+import { QuotesComparisonService } from "Modules/StockQuotesComparison/services";
 
 export class ComparisonQuoteController {
   public async compareStocksQuotes(request: Request, response: Response) {
