@@ -1,5 +1,4 @@
 import { ListQuoteService } from "Modules/StockQuotes/services";
-import { QuotesComparisonService } from "Modules/StockQuotesComparison/services";
 import { getStockHistory } from "Services/routeCalls/routeCallsService";
 import { formatDate } from "Helpers/dateFormatter";
 import { StockGainDTO, StockGainsPayloadDTO } from "../DTOs";
