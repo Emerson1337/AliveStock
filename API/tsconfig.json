@@ -115,6 +115,9 @@
       "Services/*": [
         "./src/services/*"
       ],
+      "Helpers/*": [
+        "./src/helpers/*"
+      ],
       "@src/*": [
         "./src/*"
       ]
