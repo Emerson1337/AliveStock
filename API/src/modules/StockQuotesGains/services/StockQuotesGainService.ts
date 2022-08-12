@@ -1,7 +1,11 @@
 import { ListQuoteService } from "Modules/StockQuotes/services";
 import { getStockHistory } from "Services/routeCalls/routeCallsService";
 import { formatDate } from "Helpers/dateFormatter";
-import { StockGainDTO, StockGainsPayloadDTO } from "../DTOs";
+import {
+  StockGainDTO,
+  StockGainObjectDTO,
+  StockGainsPayloadDTO,
+} from "../DTOs";
 
 export class StockQuotesGainService {
   public async stockGains({
@@ -17,27 +21,46 @@ export class StockQuotesGainService {
       stockName,
     });
 
-    const previousPurchaseDate = formatDate(new Date(purchaseDate));
+    const stockQuotePast = stockQuoteHistory[purchaseDate];
+    const priceAtDate = stockQuotePast["4. close"];
 
-    const stockQuote = stockQuoteHistory[purchaseDate];
-    const previousStockQuote = stockQuoteHistory[previousPurchaseDate];
+    const changePercent =
+      (priceAtDate - stockQuoteToday.lastPrice) / priceAtDate;
 
-    const closePrice = stockQuote["4. close"];
-    const previousClose = previousStockQuote["4. close"];
+    // Patterns of variable names
+    const capitalGains = -(purchasedValue * changePercent); // if change is negative, then the new price grown up
+    const lastPrice = stockQuoteToday.lastPrice;
+    const name = stockQuoteToday.name;
+    const purchasedAmount = purchasedValue;
+    const purchasedAt = purchaseDate;
 
-    const changePercent = (previousClose - closePrice) / closePrice;
-    // if change is negative, then the new price grown up
-    const capitalGains = -(purchasedValue * changePercent);
-
-    const gainPercent: StockGainDTO = {
-      name: stockName,
-      lastPrice: stockQuoteToday.lastPrice,
-      priceAtDate: closePrice,
-      purchasedAmount: purchasedValue,
-      purchasedAt: purchaseDate,
+    const stockGains = await this.createObjectStockGain({
+      name,
+      lastPrice,
+      priceAtDate,
+      purchasedAmount,
+      purchasedAt,
       capitalGains,
-    };
+    });
 
-    return gainPercent;
+    return stockGains;
+  }
+
+  public async createObjectStockGain({
+    name,
+    lastPrice,
+    priceAtDate,
+    purchasedAmount,
+    purchasedAt,
+    capitalGains,
+  }: StockGainObjectDTO): Promise<StockGainDTO> {
+    return Object.assign({
+      name,
+      lastPrice,
+      priceAtDate,
+      purchasedAmount,
+      purchasedAt,
+      capitalGains,
+    });
   }
 }
