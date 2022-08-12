@@ -2,8 +2,8 @@ import { Router } from "express";
 
 const routes = Router();
 
-import "./quotesRoutes";
-import "./QuotesHistoryRoutes";
-import "./QuotesComparisonRoutes";
+import "./StockQuotesRoutes";
+import "./StockQuotesHistoryRoutes";
+import "./StockQuotesComparisonRoutes";
 
 export { routes };

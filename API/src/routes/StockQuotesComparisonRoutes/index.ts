@@ -1,4 +1,4 @@
-import { ComparisonQuoteController } from "Controllers/ComparisonQuoteController";
+import { ComparisonQuoteController } from "Controllers/ComparisonStockQuoteController";
 
 import { routes as router } from "../routes";
 
