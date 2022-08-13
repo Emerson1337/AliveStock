@@ -147,7 +147,7 @@ export default function StockHistory({ stockName }: StockHistoryProps) {
         <Box p={2}>
           <DataGrid
             rowsPerPageOptions={[100]}
-            style={{ height: 300, width: "100%" }}
+            style={{ height: 800, width: "100%" }}
             disableColumnMenu
             columns={columns}
             rows={history.prices.map((price) => ({

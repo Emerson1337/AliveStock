@@ -1,3 +1,7 @@
 import app from "./app";
 
-app.listen(3333, () => console.log("Server has been initializated! 🚀"));
+const PORT = 3333;
+
+app.listen(PORT, () =>
+  console.log(`Server has been initializated! 🚀 Port: ${PORT}`)
+);
