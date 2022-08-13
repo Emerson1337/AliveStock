@@ -14,7 +14,7 @@ yarn dev
 yarn test
 ```
 
-Certifique-se de duplicar o seu .env.example e renomeá-lo para .env. Na variável TOKEN, você precisará coletá-lo (caso queira), no site oficial da API, em: [https://www.alphavantage.co/support/#api-key](https://www.alphavantage.co/support/#api-key)
+Certifique-se de duplicar o seu .env.example e renomeá-lo para .env. Na variável TOKEN, você precisará coletá-lo, caso queira, no site oficial da API, em: [https://www.alphavantage.co/support/#api-key](https://www.alphavantage.co/support/#api-key)
 
 Após isso, basta substituir após a igualdade.
 
@@ -48,7 +48,7 @@ Sua aplicação agora está configurada e pronta para ser utilizada.
 
 # **FUNCIONAMENTO**
 
-**OBSERVAÇÃO:** A api utilizada tem o limite de apenas 5 requisições por minuto, então poderá acontecer alguma inconsistência durante o uso da aplicação, tendo em vista que nada será respondido no próximo minuto, pois a API da alphavantage nos bloqueou temporariamente. Portanto, é normal que ao rodar “yarn test” na API, apenas 5 testes (dos 6 existentes) passem, pois o último será bloqueado.
+**OBSERVAÇÃO:** A api utilizada tem o limite de apenas 5 requisições por minuto, então poderá acontecer alguma inconsistência durante o uso da aplicação, tendo em vista que nada será respondido no próximo minuto, pois a API da alphavantage nos bloqueou temporariamente. Portanto, é normal que ao rodar “yarn test” na API, apenas 5 testes (dos 8 existentes) passem, pois os seguintes serão bloqueados.
 
 Seguem as prints do sistema funcionando:
 
@@ -98,21 +98,21 @@ Para construir a API, utilizei Typescript, Axios, Path Register (para aplicar o 
 
 O foco do desenvolvimento da API foi explicitar algumas práticas de organização e padrão de projeto que gosto de utilizar. A separação consiste em ter algumas pastas gerais dentro de “./src”. São elas:
 
-Controllers → Responsáveis por processar a requisição HTTP e direcionar a chamada de serviços
+**Controllers** → Responsáveis por processar a requisição HTTP e direcionar a chamada de serviços.
 
-Interfaces → Onde se encontram as tipagens generalistas para utilização no sistema
+**Interfaces** → Onde se encontram as tipagens generalistas para utilização no sistema.
 
-Lib → Onde temos o centralizador de rotas da aplicação, separadas por contexto em um objeto
+**Lib** → Onde temos o centralizador de rotas da aplicação, separadas por contexto em um objeto.
 
-Modules → Onde centralizei os casos de uso da aplicação
+**Modules** → Onde centralizei os casos de uso da aplicação.
 
-Dentro de modules temos alguns casos de uso, guardando os seus respectivos serviços, interfaces de transferência de objeto e seus testes automatizados
+Dentro de modules temos alguns casos de uso, guardando os seus respectivos serviços, interfaces de transferência de objeto e seus testes automatizados.
 
-Routes → Onde temos as intâncias de rotas para o framework Express
+**Routes** → Onde temos as instâncias de rotas para o framework Express.
 
-Services → Onde centralizamos todas as configurações e chamadas da API externa que estamos consumindo ([https://www.alphavantage.co](https://www.alphavantage.co/))
+**Services** → Onde centralizamos todas as configurações e chamadas da API externa que estamos consumindo ([https://www.alphavantage.co](https://www.alphavantage.co/)).
 
-Validators → Onde temos alguns modelos de Exceptions padrões para utilizar nas validações dos dados.
+**Validators** → Onde temos alguns modelos de Exceptions padrões para utilizar nas validações dos dados.
 
 **PATH MAPPING**
 
