@@ -133,3 +133,5 @@ Uma outra abordagem interessante que senti necessidade de mostrar, foi a utiliza
 Cada emoji tem uma descrição subentendida, como por exemplo esses:
 
 ![image](https://user-images.githubusercontent.com/58860863/184511878-7fc3426a-6e64-4404-941f-82e16f365dad.png)
+
+Download da collection de requisições no insomnia: [Baixar](https://www.mediafire.com/file/2e4wn98fxxqwjvt/alive_requests_Insomnia_2022-08-13.json/file)
