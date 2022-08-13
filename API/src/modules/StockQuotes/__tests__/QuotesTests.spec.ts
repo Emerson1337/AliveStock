@@ -14,7 +14,7 @@ describe("Quote controller", () => {
   it("Should not be able to get stock quote", async () => {
     const response = await request(app).get(`/stock/IBM2/quote`);
 
-    expect(response.body.errors).toBe("Quote by stock not found!");
+    expect(response.body.errors).toBe("IBM2 quote not found!");
     expect(response.statusCode).toBe(404);
   });
 });

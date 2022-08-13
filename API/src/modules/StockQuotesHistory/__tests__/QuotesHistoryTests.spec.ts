@@ -25,7 +25,7 @@ describe("Quote History controller", () => {
       `/stocks/IBM2/history?from=2022-07-04&to=2022-07-07`
     );
 
-    expect(response.body.errors).toBe("Stock history quotes not found!");
+    expect(response.body.errors).toBe("Stock IBM2 history quotes not found!");
     expect(response.statusCode).toBe(404);
   });
 });

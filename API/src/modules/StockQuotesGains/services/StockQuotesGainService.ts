@@ -1,3 +1,4 @@
+import { StockQuoteNotFound } from "Validators/StockException";
 import { UnavailableServiceException } from "Validators/UnavailableServiceException";
 import { ListQuoteService } from "Modules/StockQuotes/services";
 import { getStockHistory } from "Services/routeCalls/routeCallsService";
@@ -18,7 +19,9 @@ export class StockQuotesGainService {
       "Time Series (Daily)"
     ];
 
-    if (!stockQuoteHistory) throw new UnavailableServiceException();
+    if (!stockQuoteHistory) throw new StockQuoteNotFound(stockName);
+
+    if (stockQuoteHistory["Note"]) throw new UnavailableServiceException();
 
     const stockQuoteToday = await new ListQuoteService().listByCompany({
       stockName,
