@@ -1,3 +1,4 @@
+import { InvalidInputDataException } from "Validators/DataException";
 import { ListQuoteService } from "Modules/StockQuotes/services";
 
 import { QuotesComparisonDTO, StocksCompareDTO } from "../DTOs";
@@ -7,7 +8,7 @@ export class QuotesComparisonService {
     stockName,
     stocksToCompare,
   }: StocksCompareDTO): Promise<QuotesComparisonDTO> {
-    if (!stocksToCompare.length) throw new Error("Invalid data!");
+    if (!stocksToCompare.length) throw new InvalidInputDataException();
 
     const mainStock = await new ListQuoteService().listByCompany({ stockName });
 

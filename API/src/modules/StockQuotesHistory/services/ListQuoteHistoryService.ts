@@ -1,3 +1,4 @@
+import { InvalidResponseDataException } from "Validators/DataException";
 import { QuoteHistoryDTO } from "Modules/StockQuotesHistory/DTOs/QuoteHistoryDTO";
 import { getStockHistory } from "Services/routeCalls/routeCallsService";
 
@@ -12,7 +13,7 @@ export class ListQuoteHistoryService {
     const stockHistoryQuote = await getStockHistory(stockName);
 
     if (!stockHistoryQuote["Time Series (Daily)"]) {
-      throw new Error("Stock history quotes not found!");
+      throw new InvalidResponseDataException(stockName);
     }
 
     const historyObject = await this.customizeObjectToReturn(

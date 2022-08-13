@@ -77,6 +77,7 @@ module.exports = {
     "^Controllers/(.*)$": "<rootDir>/src/controllers/$1",
     "^Services/(.*)$": "<rootDir>/src/services/$1",
     "^Modules/(.*)$": "<rootDir>/src/modules/$1",
+    "^Validators/(.*)$": "<rootDir>/src/validators/$1",
     "^@src/(.*)$": "<rootDir>/src/$1",
   },
 

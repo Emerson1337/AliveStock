@@ -1,3 +1,4 @@
+import { UnavailableServiceException } from "Validators/UnavailableServiceException";
 import { ListQuoteService } from "Modules/StockQuotes/services";
 import { getStockHistory } from "Services/routeCalls/routeCallsService";
 import {
@@ -5,6 +6,7 @@ import {
   StockGainObjectDTO,
   StockGainsPayloadDTO,
 } from "../DTOs";
+import { StockAmountException } from "Validators/StockException";
 
 export class StockQuotesGainService {
   public async stockGains({
@@ -16,10 +18,7 @@ export class StockQuotesGainService {
       "Time Series (Daily)"
     ];
 
-    if (!stockQuoteHistory)
-      throw new Error(
-        "Unavailable API service! Probably 5 requests per minute has expired."
-      );
+    if (!stockQuoteHistory) throw new UnavailableServiceException();
 
     const stockQuoteToday = await new ListQuoteService().listByCompany({
       stockName,
@@ -29,9 +28,7 @@ export class StockQuotesGainService {
     const priceAtDate = stockQuotePast["4. close"];
 
     if (purchasedValue > stockQuotePast["5. volume"])
-      throw new Error(
-        "Purchase Stock amount greater then Stock sold in the day."
-      );
+      throw new StockAmountException();
 
     // Patterns of variable names
     const capitalGains =
