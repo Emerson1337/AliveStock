@@ -15,21 +15,25 @@ export class StockQuotesGainService {
     purchaseDate,
     purchasedValue,
   }: StockGainsPayloadDTO): Promise<StockGainDTO> {
+    // Getting stock history prices
     const stockQuoteHistory = (await getStockHistory(stockName))[
       "Time Series (Daily)"
     ];
 
+    // Verifying some errors (unavailable or wrong stock name)
     if (!stockQuoteHistory) throw new StockQuoteNotFound(stockName);
-
     if (stockQuoteHistory["Note"]) throw new UnavailableServiceException();
 
+    // Getting stock info from today
     const stockQuoteToday = await new ListQuoteService().listByCompany({
       stockName,
     });
 
+    // Getting data in new variables
     const stockQuotePast = stockQuoteHistory[purchaseDate];
     const priceAtDate = stockQuotePast["4. close"];
 
+    // Verifying if the user bought more thant stocks sold in the day selected
     if (purchasedValue > stockQuotePast["5. volume"])
       throw new StockAmountException();
 
@@ -41,6 +45,7 @@ export class StockQuotesGainService {
     const purchasedAmount = purchasedValue;
     const purchasedAt = purchaseDate;
 
+    // Creating object to return
     const stockGains = await this.createObjectStockGain({
       name,
       lastPrice,

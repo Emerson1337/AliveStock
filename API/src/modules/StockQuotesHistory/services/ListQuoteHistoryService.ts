@@ -10,12 +10,15 @@ export class ListQuoteHistoryService {
     dateFrom,
     dateTo,
   }: StockHistoryDTO): Promise<QuoteHistoryDTO> {
+    // Getting stock history
     const stockHistoryQuote = await getStockHistory(stockName);
 
+    // Verifying if we got response
     if (!stockHistoryQuote["Time Series (Daily)"]) {
       throw new InvalidResponseDataException(stockName);
     }
 
+    // Creating object to return
     const historyObject = await this.customizeObjectToReturn(
       stockHistoryQuote["Time Series (Daily)"],
       stockName,
@@ -39,9 +42,11 @@ export class ListQuoteHistoryService {
       prices: [],
     });
 
+    // Just formatting object to return to frontend
     for (const date of keysDate) {
       const dateObject = new Date(date);
 
+      // Checking intervals before to add in array of prices data history
       this.checkDateInterval(dateObject, fromDate, toDate) &&
         historyData.prices.push({
           opening: Number(historyByDate[date]["1. open"]),
@@ -56,6 +61,7 @@ export class ListQuoteHistoryService {
     return historyData;
   }
 
+  // Function to verify if data are in the interval
   public checkDateInterval(dateObject: Date, fromDate: Date, toDate: Date) {
     if (
       dateObject.getTime() >= fromDate.getTime() &&
